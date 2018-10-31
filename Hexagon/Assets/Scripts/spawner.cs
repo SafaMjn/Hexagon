@@ -9,9 +9,11 @@ public class spawner : MonoBehaviour {
     public GameObject prefab;
 
     private float nextTimeToSpawn = 0f;
-	
-	// Update is called once per frame
-	void Update () {
+
+    public GameManager gameManager;
+
+    // Update is called once per frame
+    void Update () {
 		
         if (Time.time >= nextTimeToSpawn)
         {
@@ -19,4 +21,9 @@ public class spawner : MonoBehaviour {
             nextTimeToSpawn = Time.time + 1f / spawnRate;
         }
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        gameManager.GameOver();
+    }
 }
